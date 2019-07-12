@@ -84,4 +84,27 @@ public class phoneDAODBImpl implements phoneDAO {
         db.close();
         return p;
     }
+
+    @Override
+    public void delete(phone p) {
+        SQLiteDatabase db=helper.getWritableDatabase();
+//第二個參數是where clause，第三個參數是指定要刪除的那筆資料id
+        db.delete("phone","id=?",new String[] {String.valueOf(p.id)});
+        db.close();
+    }
+
+    @Override
+    public void update(phone p) {
+        SQLiteDatabase db=helper.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("name",p.name);
+        cv.put("tel",p.tel);
+        cv.put("addr",p.addr);
+        cv.put("email",p.email);
+        cv.put("tel2",p.tel2);
+// 第二個參數要更新的資料
+//第三個參數是要用甚麼篩選，第四個參數是要更新哪一筆資料
+        db.update("phone",cv,"id=?",new String[] {String.valueOf(p.id)});
+        db.close();
+    }
 }

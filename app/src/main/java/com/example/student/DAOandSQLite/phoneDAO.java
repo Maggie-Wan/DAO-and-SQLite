@@ -7,4 +7,6 @@ public interface phoneDAO {
     public phone getOne(int id);
     public void clearAll();
     public phone[] getList();
+    public void delete(phone p);
+    public void update(phone p);
 }
